@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +31,23 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <header className="h-16 flex items-center px-4 border-b">
+          <Button asChild variant='ghost' className="font-bold text-xl">
+            <Link href='/'>Logo</Link>
+          </Button>
+
+          <Button asChild variant='ghost'>
+            <Link href='/lp'>service</Link>
+          </Button>
+
+          <span className="flex-1"></span>
+
+          <Avatar>
+            <AvatarImage src="https://api.dicebear.com/9.x/adventurer/svg?seed=Felix" alt="image"/>
+          </Avatar>
+        </header>
+        <main className="p-4 h-[400px]">{children}</main>
+        <footer className="border-t h-16 flex items-center px-4">Footer</footer>
       </body>
     </html>
   );
